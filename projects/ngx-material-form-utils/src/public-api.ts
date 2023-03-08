@@ -5,3 +5,5 @@
 export * from './lib/ngx-material-form-utils.service';
 export * from './lib/ngx-material-form-utils.component';
 export * from './lib/ngx-material-form-utils.module';
+export * from './lib/validation/error-message.service';
+export * from './lib/validation/error-message.component';

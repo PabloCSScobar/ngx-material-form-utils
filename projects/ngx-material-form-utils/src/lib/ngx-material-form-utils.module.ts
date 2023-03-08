@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NgxMaterialFormUtilsComponent } from './ngx-material-form-utils.component';
+import { ErrorMessageComponent } from './validation/error-message.component';
 
 
 
@@ -8,9 +9,11 @@ import { NgxMaterialFormUtilsComponent } from './ngx-material-form-utils.compone
     NgxMaterialFormUtilsComponent
   ],
   imports: [
+    ErrorMessageComponent
   ],
   exports: [
-    NgxMaterialFormUtilsComponent
+    NgxMaterialFormUtilsComponent,
+    ErrorMessageComponent
   ]
 })
 export class NgxMaterialFormUtilsModule { }

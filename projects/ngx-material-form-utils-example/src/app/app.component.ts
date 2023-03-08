@@ -1,4 +1,6 @@
+import { inject } from '@angular/core';
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ngx-material-form-utils-example';
+  readonly fb = inject(FormBuilder);
+  exampleForm = this.fb.group({
+    email: [''],
+    username: ['', Validators.required]
+  });
 }
