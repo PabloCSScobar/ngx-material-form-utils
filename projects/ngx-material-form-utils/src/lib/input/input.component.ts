@@ -1,7 +1,7 @@
 import { NgIf } from "@angular/common";
-import { AfterViewInit, Component, forwardRef, Inject, Input, Optional, Self, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, forwardRef, Inject, Input, Optional, Self, SkipSelf, ViewChild } from "@angular/core";
 import { inject } from "@angular/core/testing";
-import { ControlValueAccessor, DefaultValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
+import { ControlContainer, ControlValueAccessor, DefaultValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldAppearance, MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule, MAT_INPUT_VALUE_ACCESSOR } from "@angular/material/input";
 import { MfuErrorMessageComponent } from "../validation/error-message.component";
@@ -10,51 +10,26 @@ import { MfuErrorMessageComponent } from "../validation/error-message.component"
   selector: 'mfu-input',
   standalone: true,
   imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, MfuErrorMessageComponent, NgIf],
-  providers: [
+  viewProviders: [
     {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => MfuInputComponent),
-      multi: true
+      provide: ControlContainer,
+      useFactory: (container: ControlContainer) => container,
+      deps: [[new SkipSelf(), ControlContainer]]
     }
   ],
   template: `
     <mat-form-field [appearance]="appearance">
       <mat-label *ngIf="label">{{label}}</mat-label>
-      <input matInput [formControl]="control" [placeholder]="placeholder">
+      <input matInput [formControlName]="controlName" [placeholder]="placeholder">
       <mat-error *ngIf="showErrors" mfuErrorMessage/>
     </mat-form-field>
   `
 })
-export class MfuInputComponent implements ControlValueAccessor, AfterViewInit {
-  @ViewChild(DefaultValueAccessor) valueAccessor!: DefaultValueAccessor;
-  @Input() control!: FormControl;
-  @Input() name!: string;
+export class MfuInputComponent {
+  @Input() controlName!: string;
   @Input() appearance: MatFormFieldAppearance = 'outline';
   @Input() showErrors = true;
   @Input() label?: string | null = null;
   @Input() placeholder: string = '';
 
-  constructor(@Optional() @Self() public ngControl: NgControl) {
-  }
-
-
-  writeValue(obj: any) {
-    this.valueAccessor.writeValue(obj);
-  }
-
-  registerOnChange(fn: any) {
-    this.valueAccessor.registerOnChange(fn);
-  }
-
-  registerOnTouched(fn: any) {
-    this.valueAccessor.registerOnTouched(fn);
-  }
-
-  setDisabledState(isDisabled: boolean) {
-    this.valueAccessor.setDisabledState(isDisabled);
-  }
-
-  ngAfterViewInit(): void {
-    if(this.ngControl) this.ngControl.valueAccessor = this.valueAccessor;
-  }
 }
