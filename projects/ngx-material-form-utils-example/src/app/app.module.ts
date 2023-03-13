@@ -5,14 +5,16 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ErrorMessageComponent } from 'ngx-material-form-utils';
+import { MfuErrorMessageComponent } from 'ngx-material-form-utils';
+import { MfuInputComponent } from 'ngx-material-form-utils';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
-    ErrorMessageComponent,
+    MfuErrorMessageComponent,
+    MfuInputComponent,
     BrowserModule,
     BrowserAnimationsModule,
     MatFormFieldModule,

@@ -1,7 +1,7 @@
 import { NgIf } from "@angular/common";
 import { AfterViewInit, Component, forwardRef, Inject, Input, Optional, Self, ViewChild } from "@angular/core";
 import { inject } from "@angular/core/testing";
-import { ControlValueAccessor, DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
+import { ControlValueAccessor, DefaultValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldAppearance, MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule, MAT_INPUT_VALUE_ACCESSOR } from "@angular/material/input";
 import { MfuErrorMessageComponent } from "../validation/error-message.component";
@@ -26,9 +26,6 @@ import { MfuErrorMessageComponent } from "../validation/error-message.component"
   `
 })
 export class MfuInputComponent implements ControlValueAccessor, AfterViewInit {
-  ngAfterViewInit(): void {
-    console.log(this.valueAccessor);
-  }
   @ViewChild(DefaultValueAccessor) valueAccessor!: DefaultValueAccessor;
   @Input() control!: FormControl;
   @Input() name!: string;
@@ -36,6 +33,9 @@ export class MfuInputComponent implements ControlValueAccessor, AfterViewInit {
   @Input() showErrors = true;
   @Input() label?: string | null = null;
   @Input() placeholder: string = '';
+
+  constructor(@Optional() @Self() public ngControl: NgControl) {
+  }
 
 
   writeValue(obj: any) {
@@ -52,5 +52,9 @@ export class MfuInputComponent implements ControlValueAccessor, AfterViewInit {
 
   setDisabledState(isDisabled: boolean) {
     this.valueAccessor.setDisabledState(isDisabled);
+  }
+
+  ngAfterViewInit(): void {
+    if(this.ngControl) this.ngControl.valueAccessor = this.valueAccessor;
   }
 }

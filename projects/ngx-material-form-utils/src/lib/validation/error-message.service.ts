@@ -9,7 +9,7 @@ type ErrorMessages = {
   providedIn: "root"
 })
 export class ErrorMessageService {
-  errorMessage(control: AbstractControl | null): string | null {
+  errorMessage(control: AbstractControl | null | undefined): string | null {
     if (!control) return null;
     for (const key in control.errors) {
       if (control.errors.hasOwnProperty(key) && control.touched) {
