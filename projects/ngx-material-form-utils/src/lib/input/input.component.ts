@@ -1,9 +1,8 @@
 import { NgIf } from "@angular/common";
-import { AfterViewInit, Component, forwardRef, Inject, Input, Optional, Self, SkipSelf, ViewChild } from "@angular/core";
-import { inject } from "@angular/core/testing";
-import { ControlContainer, ControlValueAccessor, DefaultValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
+import { Component, Input, SkipSelf } from "@angular/core";
+import { ControlContainer, ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldAppearance, MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule, MAT_INPUT_VALUE_ACCESSOR } from "@angular/material/input";
+import { MatInputModule } from "@angular/material/input";
 import { MfuErrorMessageComponent } from "../validation/error-message.component";
 
 @Component({
