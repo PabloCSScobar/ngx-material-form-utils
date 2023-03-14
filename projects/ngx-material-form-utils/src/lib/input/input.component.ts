@@ -19,6 +19,7 @@ import { MfuErrorMessageComponent } from "../validation/error-message.component"
   template: `
     <mat-form-field [appearance]="appearance">
       <mat-label *ngIf="label">{{label}}</mat-label>
+      <mat-hint *ngIf="hint">{{hint}}</mat-hint>
       <input 
         [id]="id"
         [name]="name"
@@ -48,6 +49,7 @@ export class MfuInputComponent {
   @Input() showErrors = true;
   @Input() label?: string | null = null;
   @Input() placeholder: string = '';
+  @Input() hint?: string | null = null;
 
   @Output() blur = new EventEmitter<FocusEvent>();
   @Output() focus = new EventEmitter<FocusEvent>();
