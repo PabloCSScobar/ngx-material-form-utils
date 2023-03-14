@@ -48,6 +48,8 @@ export class ErrorMessageService {
     validator: keyof ValidationErrorMessages,
     validationError: any = null
   ): string | null {
-    return this.messages[validator](validationError) ?? null;
+    const validatorMessage = this.messages[validator];
+    if (!validatorMessage) return null;
+    return validatorMessage(validationError);
   }
 }
