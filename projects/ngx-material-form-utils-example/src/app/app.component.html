@@ -5,8 +5,11 @@
       formControlName="email"
       placeholder="Enter email"
       matInput
+      (input)="onInput($event)"
     />
+    <mat-hint>Enter some email</mat-hint>
     <mat-error mfuErrorMessage></mat-error>
     </mat-form-field>
-    <mfu-input label="Username" placeholder="Enter username" controlName="username"/>
+    <mfu-input label="Username" placeholder="Enter username" controlName="username" [required]="true" hint="Enter some cool username" (blur)="onBlur($event)" (focus)="onFocus($event)" (input)="onInput($event)"/>
+
   </form>

@@ -8,6 +8,15 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+onInput($event: Event) {
+  console.log($event);
+}
+onFocus($event: FocusEvent) {
+  console.log($event);
+}
+onBlur($event: FocusEvent) {
+  console.log($event);
+}
   readonly fb = inject(FormBuilder);
   exampleForm = this.fb.group({
     email: [''],
