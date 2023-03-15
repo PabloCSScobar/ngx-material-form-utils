@@ -66,7 +66,7 @@ Add mfuErrorMessage to ```<mat-error>``` in your mat-form-field to allow display
 ```
 
 ### Input field
-The library provides a component mfu-input which is used to simplify the creation of input fields with Angular Material. Its a wrapper mat-form-field with matInput and mat-error.
+The library provides a component mfu-input which is used to simplify the creation of input fields with Angular Material. Its a wrapper for mat-form-field with built-in error handling.
 
 #### Setup
 Import MfuInputComponent in your module.
