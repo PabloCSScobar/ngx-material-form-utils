@@ -3,12 +3,12 @@ import { Component, EventEmitter, Input, Output, SkipSelf, ViewChild } from "@an
 import { ControlContainer, ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldAppearance, MatFormFieldModule } from "@angular/material/form-field";
 import { MatInput, MatInputModule } from "@angular/material/input";
-import { MfuErrorMessageComponent } from "../validation/error-message.component";
+import { MfuErrorMessage } from "../validation/error-message.component";
 
 @Component({
   selector: 'mfu-input',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, MfuErrorMessageComponent, NgIf],
+  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, MfuErrorMessage, NgIf],
   viewProviders: [
     {
       provide: ControlContainer,

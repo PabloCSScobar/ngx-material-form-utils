@@ -9,7 +9,7 @@ import { ErrorMessageService } from "./error-message.service";
   template: `{{ errorMessage }}`,
   standalone: true
 })
-export class MfuErrorMessageComponent implements AfterViewChecked, OnDestroy {
+export class MfuErrorMessage implements AfterViewChecked, OnDestroy {
   container = inject(MatFormField);
   errorMessageService = inject(ErrorMessageService);
   control!: MatFormFieldControl<any>;
