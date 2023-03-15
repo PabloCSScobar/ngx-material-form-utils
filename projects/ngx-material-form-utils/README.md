@@ -1,24 +1,123 @@
-# NgxMaterialFormUtils
+# Ngx-Material-form-utils
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.0.
+ngx-material-form-utils is a library that provides components which are used to simplify the creation of forms with Angular Material.
 
-## Code scaffolding
+## Installation
+At first, you should install the Angular Material and setup it. [Learn more about the setup](https://material.angular.io/guide/getting-started).
 
-Run `ng generate component component-name --project ngx-material-form-utils` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-material-form-utils`.
-> Note: Don't forget to add `--project ngx-material-form-utils` or else it will be added to the default project in your `angular.json` file. 
+Install ngx-material-form-utils library:
 
-## Build
+```bash
+$ npm install ngx-material-form-utils
+```
 
-Run `ng build ngx-material-form-utils` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Documentation
+### Error handling
+The library provides a directive mfuErrorMessage which is used to display error messages provided in InjectionToken.
 
-## Publishing
+#### Setup
+Import MfuErrorMessage and VALIDATION_ERROR_MESSAGES_TOKEN in your module. Then provide VALIDATION_ERROR_MESSAGES_TOKEN with your custom error messages.
 
-After building your library with `ng build ngx-material-form-utils`, go to the dist folder `cd dist/ngx-material-form-utils` and run `npm publish`.
 
-## Running unit tests
+```typescript
+import { MfuErrorMessage, ValidationErrorMessages, VALIDATION_ERROR_MESSAGES_TOKEN } from 'ngx-material-form-utils';
 
-Run `ng test ngx-material-form-utils` to execute the unit tests via [Karma](https://karma-runner.github.io).
+const validationErrorMessages: ValidationErrorMessages = {
+  required: () => 'This field is very required.',
+}
 
-## Further help
+NgModule({
+  declarations: [
+    ...
+    MfuErrorMessage,
+  ],
+  providers: [
+    {
+      provide: VALIDATION_ERROR_MESSAGES_TOKEN,
+      useValue: validationErrorMessages,
+    },
+  ],
+})
+```
+#### Usage
+Add mfuErrorMessage to <mat-error> in your mat-form-field to allow displaying your error messages.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```html
+<mat-form-field appearance="outline">
+<mat-label>Email</mat-label>
+  <input
+    formControlName="email"
+    placeholder="Enter email"
+    matInput
+  />
+  <mat-hint>Enter some email</mat-hint>
+  <mat-error mfuErrorMessage></mat-error>
+</mat-form-field>
+```
+
+### Input field
+The library provides a component mfu-input which is used to simplify the creation of input fields with Angular Material. Its a wrapper mat-form-field with matInput and mat-error.
+
+#### Setup
+Import MfuInputComponent in your module.
+
+```typescript
+import { MfuInputComponent } from 'ngx-material-form-utils';
+
+NgModule({
+  declarations: [
+    ...
+    MfuInputComponent,
+  ]
+})
+```
+
+#### Basic usage
+Add mfuInput to your form.
+
+component.ts
+```typescript
+export class AppComponent {
+  readonly fb = inject(FormBuilder);
+  exampleForm = this.fb.group({
+    username: ['', Validators.required]
+  });
+}
+```
+component.html
+```html
+<form [formGroup]="exampleForm">
+  <mfu-input controlName="username"/>
+</form>
+```
+Errors are handled by default, but you should add error messages in your module by providing VALIDATION_ERROR_MESSAGES_TOKEN (example above).
+
+### mfu-input inputs
+| Name | Type | Default value | Description |
+| --- | --- | --- | --- |
+| controlName | string | - | Name of the control in the form. |
+| showErrors | boolean | true | Show errors of the input field. |
+| appearance | MatFormFieldAppearance | 'outline' | Appearance of the input field. |
+| label | string | - | Label of the input field. |
+| placeholder | string | - | Placeholder of the input field. |
+| hint | string | - | Hint of the input field. |
+| required | boolean | false | Is the input field required. |
+| type | string | 'text' | Type of the input field. |
+| value | string | - | Value of the input field. |
+| name | string | - | Name of the input field. |
+
+### mfu-input outputs
+| Name | Type | Description |
+| --- | --- | --- |
+| blur | EventEmitter<FocusEvent> | Emits when the input field is blurred. |
+| focus | EventEmitter<FocusEvent> | Emits when the input field is focused. |
+| input | EventEmitter<Event> | Emits when the input field is changed. |
+
+mfu-input also exposes matInput element wrapped by mfu-input. You can access it by using ViewChild decorator.
+
+```typescript
+...
+@ViewChild(MfuInputComponent) mfuInput: MfuInputComponent;
+...
+mfuInput.matInput
+```
