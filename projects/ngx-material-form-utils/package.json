@@ -1,9 +1,26 @@
 {
   "name": "ngx-material-form-utils",
   "version": "0.0.1",
+  "description": "Wrapper for Angular Material Form Field Controls that provides error handling and other utilities",
+  "author": "Paweł Gajo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PawelGajo/ngx-material-form-utils.git"
+  },
+  "keywords": [
+    "angular",
+    "material",
+    "material-form-field",
+    "material-input",
+    "form-error-handling",
+    "form",
+    "utils"
+  ],
   "peerDependencies": {
-    "@angular/common": "^14.2.0",
-    "@angular/core": "^14.2.0"
+    "@angular/common": ">=15.0.0",
+    "@angular/core": ">=15.0.0",
+    "@angular/material": ">=15.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
