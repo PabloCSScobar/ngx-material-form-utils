@@ -1,6 +1,6 @@
 {
   "name": "ngx-material-form-utils",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Wrapper for Angular Material Form Field Controls that provides error handling and other utilities",
   "author": "Paweł Gajo",
   "license": "MIT",
