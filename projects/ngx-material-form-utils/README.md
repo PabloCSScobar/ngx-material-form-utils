@@ -39,8 +39,18 @@ NgModule({
   ],
 })
 ```
+
+If your validator returns some parameters, you can also use them in your error message.
+Example
+
+```typescript
+const validationErrorMessages: ValidationErrorMessages = {
+  minlength: (params) => `This field should be at least ${params.requiredLength} characters long.`,
+  min: (error) => `The minimum value is ${error.min}. You entered ${error.actual}.`,
+}
+```
 #### Usage
-Add mfuErrorMessage to <mat-error> in your mat-form-field to allow displaying your error messages.
+Add mfuErrorMessage to ```<mat-error>``` in your mat-form-field to allow displaying your error messages.
 
 ```html
 <mat-form-field appearance="outline">
