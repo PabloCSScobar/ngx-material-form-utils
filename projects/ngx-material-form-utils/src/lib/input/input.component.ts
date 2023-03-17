@@ -17,7 +17,7 @@ import { MfuErrorMessage } from "../validation/error-message.component";
     }
   ],
   template: `
-    <mat-form-field [appearance]="appearance">
+    <mat-form-field [appearance]="appearance" style="width: 100%;">
       <mat-label *ngIf="label">{{label}}</mat-label>
       <mat-hint *ngIf="hint">{{hint}}</mat-hint>
       <input 
