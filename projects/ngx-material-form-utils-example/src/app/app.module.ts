@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MfuInputComponent } from 'ngx-material-form-utils';
+import { MfuInputComponent, MfuTextareaComponent } from 'ngx-material-form-utils';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
@@ -10,6 +10,7 @@ import { MfuErrorMessage, ValidationErrorMessages, VALIDATION_ERROR_MESSAGES_TOK
 
 const validationErrorMessages: ValidationErrorMessages = {
   required: () => 'This field is very required.',
+  min: (error: any) => `The minimum value is ${error.min}. You entered ${error.actual}.`,
 }
 
 @NgModule({
@@ -19,6 +20,7 @@ const validationErrorMessages: ValidationErrorMessages = {
   imports: [
     MfuErrorMessage,
     MfuInputComponent,
+    MfuTextareaComponent,
     BrowserModule,
     BrowserAnimationsModule,
     MatFormFieldModule,

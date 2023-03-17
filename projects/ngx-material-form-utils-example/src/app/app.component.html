@@ -10,6 +10,6 @@
     <mat-hint>Enter some email</mat-hint>
     <mat-error mfuErrorMessage></mat-error>
     </mat-form-field>
-    <mfu-input label="Username" placeholder="Enter username" controlName="username" [required]="true" hint="Enter some cool username" (blur)="onBlur($event)" (focus)="onFocus($event)" (input)="onInput($event)"/>
-
+    <mfu-input label="Username" type="text" controlName="username" [required]="true" hint="Enter some cool username" (blur)="onBlur($event)" (focus)="onFocus($event)" (input)="onInput($event)"/>
+    <mfu-textarea controlName="description" label="description" hint="Write something about you..." [rows]="13" [cols]="1"></mfu-textarea>
   </form>

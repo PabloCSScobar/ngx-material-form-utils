@@ -20,6 +20,7 @@ onBlur($event: FocusEvent) {
   readonly fb = inject(FormBuilder);
   exampleForm = this.fb.group({
     email: [''],
-    username: ['', Validators.required]
+    username: ['', Validators.required],
+    description: ['', Validators.required],
   });
 }
