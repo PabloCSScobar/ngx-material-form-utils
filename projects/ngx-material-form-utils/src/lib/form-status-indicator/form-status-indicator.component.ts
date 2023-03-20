@@ -24,14 +24,14 @@ import { FormGroupDirective } from "@angular/forms";
   >
     <div 
     [style.height.px]="statusHeight"
-    *ngIf="form.form.invalid && form.form.touched"
+    *ngIf="isFormInvalid"
     class="form-status invalid"
     [@slideIn]
     [@slideOut]
     ></div>
     <div
     [style.height.px]="statusHeight"
-    *ngIf="form.form.valid && form.form.touched"
+    *ngIf="isFormValid"
     class="form-status valid"
     [@slideIn]
     [@slideOut]
@@ -62,4 +62,15 @@ export class MfuFormStatusIndicatorComponent {
   @Input() showAnimation = true; 
   @Input() statusHeight = 5;
   protected readonly form = inject(FormGroupDirective);
+
+
+  get isFormInvalid() {
+    const controls = Object.values(this.form.form.controls);
+    const hasInvalidTouchedControl = controls.some(control => control.invalid && control.touched);
+    return this.form.form.invalid && hasInvalidTouchedControl;
+  }
+
+  get isFormValid() {
+    return this.form.form.valid;
+  }
 }
