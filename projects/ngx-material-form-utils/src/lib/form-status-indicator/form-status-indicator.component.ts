@@ -22,14 +22,17 @@ import { FormGroupDirective } from "@angular/forms";
       ]),
     ]),
   ],
-  template: `<div class="status-wrapper">
+  template: `<div class="status-wrapper" [style.height.px]="statusHeight"
+  >
     <div 
+    [style.height.px]="statusHeight"
     *ngIf="form.form.invalid && form.form.touched"
     class="form-status invalid"
     [@slideIn]="showAnimation ? 'void => true' : 'true => void'"
     [@slideOut]="showAnimation ? 'void => true' : 'true => void'"
     ></div>
     <div
+    [style.height.px]="statusHeight"
     *ngIf="form.form.valid && form.form.touched"
     class="form-status valid"
     [@slideIn]="showAnimation ? 'void => true' : 'true => void'"
@@ -58,6 +61,7 @@ import { FormGroupDirective } from "@angular/forms";
   standalone: true
 })
 export class MfuFormStatusIndicatorComponent {
-  @Input() showAnimation = false; 
+  @Input() showAnimation = true; 
+  @Input() statusHeight = 5;
   protected readonly form = inject(FormGroupDirective);
 }
