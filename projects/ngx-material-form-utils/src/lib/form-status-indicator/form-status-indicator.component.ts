@@ -8,35 +8,33 @@ import { FormGroupDirective } from "@angular/forms";
   imports: [NgIf],
   animations: [
     trigger('slideIn', [
-      state('void, false', style({ transform: 'translateX(-100%)' })),
-      state('true', style({ transform: 'translateX(0%)' })),
-      transition('void => true, false => true', [
+      state('void', style({ transform: 'translateX(-100%)' })),
+      transition(':enter', [
         animate('300ms ease-out', style({ transform: 'translateX(0%)' })),
       ]),
     ]),
     trigger('slideOut', [
-      state('void, false', style({ transform: 'translateX(0)' })),
-      state('true', style({ transform: 'translateX(100%)' })),
-      transition('true => void, true => false', [
-        animate('300ms ease-out', style({ transform: 'translateX(0%)' })),
+      state('void', style({ transform: 'translateX(0)' })),
+      transition(':leave', [
+        animate('300ms ease-out', style({ transform: 'translateX(100%)' })),
       ]),
     ]),
   ],
-  template: `<div class="status-wrapper" [style.height.px]="statusHeight"
+  template: `<div class="status-wrapper" [style.height.px]="statusHeight" [@.disabled]="!showAnimation"
   >
     <div 
     [style.height.px]="statusHeight"
     *ngIf="form.form.invalid && form.form.touched"
     class="form-status invalid"
-    [@slideIn]="showAnimation ? 'void => true' : 'true => void'"
-    [@slideOut]="showAnimation ? 'void => true' : 'true => void'"
+    [@slideIn]
+    [@slideOut]
     ></div>
     <div
     [style.height.px]="statusHeight"
     *ngIf="form.form.valid && form.form.touched"
     class="form-status valid"
-    [@slideIn]="showAnimation ? 'void => true' : 'true => void'"
-    [@slideOut]="showAnimation ? 'void => true' : 'true => void'"
+    [@slideIn]
+    [@slideOut]
     ></div>
   </div>`,
   styles: [`
