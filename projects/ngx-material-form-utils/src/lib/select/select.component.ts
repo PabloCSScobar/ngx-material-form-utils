@@ -1,4 +1,4 @@
-import { NgIf } from "@angular/common";
+import { NgFor, NgIf } from "@angular/common";
 import { Component, EventEmitter, Input, Output, SkipSelf, ViewChild } from "@angular/core";
 import { ControlContainer, ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldAppearance, MatFormFieldModule } from "@angular/material/form-field";
@@ -7,9 +7,9 @@ import { MatSelect, MatSelectChange, MatSelectModule } from "@angular/material/s
 import { MfuErrorMessage } from "../validation/error-message.component";
 
 @Component({
-  selector: "ngx-select",
+  selector: "mfu-select",
   standalone: true,
-  imports: [MatFormFieldModule, MatSelectModule, ReactiveFormsModule, MfuErrorMessage, NgIf],
+  imports: [MatFormFieldModule, MatSelectModule, ReactiveFormsModule, MfuErrorMessage, NgIf, NgFor],
   viewProviders: [
     {
       provide: ControlContainer,
