@@ -17,10 +17,18 @@ onFocus($event: FocusEvent) {
 onBlur($event: FocusEvent) {
   console.log($event);
 }
+
+someSelectItems = [
+  { value: '1', display: 'One' },
+  { value: '2', display: 'Two' },
+  { value: '3', display: 'Three' },
+];
+
   readonly fb = inject(FormBuilder);
   exampleForm = this.fb.group({
     email: [''],
     username: ['', Validators.required],
     description: ['', Validators.required],
+    someSelect: [null, Validators.required],
   });
 }
