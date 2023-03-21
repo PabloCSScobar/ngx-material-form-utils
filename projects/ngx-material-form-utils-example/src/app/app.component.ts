@@ -8,6 +8,9 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+onClick() {
+  console.log('Clicked in the component');
+}
 onInput($event: Event) {
   console.log($event);
 }

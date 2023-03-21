@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MfuInputComponent, MfuTextareaComponent, MfuSelectComponent, MfuFormStatusIndicatorComponent } from 'ngx-material-form-utils';
+import { MfuInputComponent, MfuTextareaComponent, MfuSelectComponent, MfuFormStatusIndicatorComponent, MfuActionConfirmDirective } from 'ngx-material-form-utils';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MfuErrorMessage, ValidationErrorMessages, VALIDATION_ERROR_MESSAGES_TOKEN } from 'ngx-material-form-utils';
+import { MatButtonModule } from '@angular/material/button';
 
 const validationErrorMessages: ValidationErrorMessages = {
   required: () => 'This field is very required.',
@@ -18,11 +19,13 @@ const validationErrorMessages: ValidationErrorMessages = {
     AppComponent,
   ],
   imports: [
+    MatButtonModule,
     MfuErrorMessage,
     MfuInputComponent,
     MfuTextareaComponent,
     MfuFormStatusIndicatorComponent,
     MfuSelectComponent,
+    MfuActionConfirmDirective,
     BrowserModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
