@@ -1,11 +1,11 @@
 import { trigger, state, style, transition, animate } from "@angular/animations";
-import { NgIf } from "@angular/common";
+import { NgIf, NgStyle } from "@angular/common";
 import { Component, inject, Input } from "@angular/core";
 import { FormGroupDirective } from "@angular/forms";
 
 @Component({
   selector: "mfu-form-status-indicator",
-  imports: [NgIf],
+  imports: [NgIf, NgStyle],
   animations: [
     trigger('slideIn', [
       state('void', style({ transform: 'translateX(-100%)' })),
@@ -25,14 +25,16 @@ import { FormGroupDirective } from "@angular/forms";
     <div 
     [style.height.px]="statusHeight"
     *ngIf="isFormInvalid"
-    class="form-status invalid"
+    class="form-status"
+    [ngStyle]="{ 'background-color': invalidColor }"
     [@slideIn]
     [@slideOut]
     ></div>
     <div
     [style.height.px]="statusHeight"
     *ngIf="isFormValid"
-    class="form-status valid"
+    class="form-status"
+    [ngStyle]="{ 'background-color': validColor }"
     [@slideIn]
     [@slideOut]
     ></div>
@@ -49,18 +51,20 @@ import { FormGroupDirective } from "@angular/forms";
     height: 5px;
     width: 100%;
   }
-  .invalid {
+  /* .invalid {
     background-color: red;
   }
   .valid {
     background-color: green;
-  }
+  } */
   `],
   standalone: true
 })
 export class MfuFormStatusIndicatorComponent {
   @Input() showAnimation = true; 
   @Input() statusHeight = 5;
+  @Input() validColor = 'green';
+  @Input() invalidColor = 'red';
   protected readonly form = inject(FormGroupDirective);
 
 
