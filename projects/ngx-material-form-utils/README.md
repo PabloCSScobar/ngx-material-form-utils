@@ -2,6 +2,15 @@
 
 ngx-material-form-utils is a library that provides components which are used to simplify the creation of forms with Angular Material.
 
+- [Installation](#installation)
+- [Error handling](#error-handling)
+- [Input](#input-field)
+- [Textarea](#textarea-component)
+- [Select](#select-component)
+- [Form Status Indicator](#form-status-indicator-component)
+- [Action Confirm Directives](#action-confirm-directives)
+  * [Submit Confirm ](#mfusubmitconfirmdirective)
+  * [Click Confirm](#mfuclickconfirmdirective) 
 ### Installation
 At first, you should install the Angular Material and setup it. [Learn more about the setup](https://material.angular.io/guide/getting-started).
 
