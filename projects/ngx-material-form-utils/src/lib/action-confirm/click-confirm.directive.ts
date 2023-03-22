@@ -5,7 +5,7 @@ import { ActionConfirmDialogComponent } from "./confirm-dialog.component";
 @Directive({
   selector: "[mfuClickConfirm]"
 })
-export class MfuClickConfirmDirective {  
+export class MfuClickConfirmDirective {
   public matDialog = inject(MatDialog);
 
   @Output() confirmedClick = new EventEmitter<Event>();
@@ -13,14 +13,12 @@ export class MfuClickConfirmDirective {
 
   @HostListener('click', ['$event'])
   onClick(event: Event) {
-    if (confirm(this.confirmMessage)) {
-      this.confirmedClick.emit(event);
-    }
+    this.openDialog(event);
   }
 
-    openDialog(event: Event) {
+  openDialog(event: Event) {
     const dialogRef = this.matDialog.open(ActionConfirmDialogComponent,
-      { 
+      {
         width: '250px',
         data: { message: this.confirmMessage }
       });
