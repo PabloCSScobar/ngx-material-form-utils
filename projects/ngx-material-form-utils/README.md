@@ -2,7 +2,7 @@
 
 ngx-material-form-utils is a library that provides components which are used to simplify the creation of forms with Angular Material.
 
-## Installation
+### Installation
 At first, you should install the Angular Material and setup it. [Learn more about the setup](https://material.angular.io/guide/getting-started).
 
 Install ngx-material-form-utils library:
@@ -11,11 +11,10 @@ Install ngx-material-form-utils library:
 $ npm install ngx-material-form-utils
 ```
 
-## Documentation
-### Error handling
+## Error handling
 The library provides a directive mfuErrorMessage which is used to display error messages provided in InjectionToken.
 
-#### Setup
+### Setup
 Import MfuErrorMessage and VALIDATION_ERROR_MESSAGES_TOKEN in your module. Then provide VALIDATION_ERROR_MESSAGES_TOKEN with your custom error messages.
 
 
@@ -49,7 +48,7 @@ const validationErrorMessages: ValidationErrorMessages = {
   min: (error) => `The minimum value is ${error.min}. You entered ${error.actual}.`,
 }
 ```
-#### Usage
+### Usage
 Add mfuErrorMessage to ```<mat-error>``` in your mat-form-field to allow displaying your error messages.
 
 ```html
@@ -65,10 +64,10 @@ Add mfuErrorMessage to ```<mat-error>``` in your mat-form-field to allow display
 </mat-form-field>
 ```
 
-### Input field
+## Input field
 The library provides a component mfu-input which is used to simplify the creation of input fields with Angular Material. Its a wrapper for mat-form-field with built-in error handling.
 
-#### Setup
+### Setup
 Import MfuInputComponent in your module.
 
 ```typescript
@@ -82,7 +81,7 @@ NgModule({
 })
 ```
 
-#### Basic usage
+### Basic usage
 Add mfuInput to your form.
 
 component.ts
@@ -133,10 +132,10 @@ mfuInput.matInput
 ```
 
 
-### Textarea Component
+## Textarea Component
 The mfu-textarea component is a wrapper for the Angular Material textarea with built-in error handling.
 
-#### Setup
+### Setup
 Import MfuTextareaComponent in your module:
 
 ```typescript
@@ -148,7 +147,7 @@ import { MfuTextareaComponent } from 'ngx-material-form-utils';
   ]
 })
 ```
-#### Usage
+### Usage
 Add mfu-textarea to your form:
 
 component.ts
@@ -201,10 +200,10 @@ mfu-textarea also exposes the matInput element wrapped by the component. You can
 mfuTextarea.matInput
 ```
 
-### Select Component
+## Select Component
 The mfu-select component is a wrapper for the Angular Material select with built-in error handling.
 
-#### Setup
+### Setup
 Import MfuSelectComponent in your module:
 
 ```typescript
@@ -216,7 +215,7 @@ import { MfuSelectComponent } from 'ngx-material-form-utils';
   ]
 })
 ```
-#### Usage
+### Usage
 Add mfu-select to your form:
 
 component.ts
@@ -276,10 +275,10 @@ mfu-select also exposes the matSelect element wrapped by the component. You can 
 mfuSelect.matSelect
 ```
 
-### Form Status Indicator Component
+## Form Status Indicator Component
 The mfu-form-status-indicator component provides a visual representation of the overall status of a form, indicating whether the form is valid or invalid. It also supports smooth animations when the form status changes.
 
-#### Setup
+### Setup
 Import MfuFormStatusIndicatorComponent in your module:
 
 ```typescript
@@ -292,7 +291,7 @@ import { MfuFormStatusIndicatorComponent } from 'ngx-material-form-utils';
   ]
 })
 ```
-#### Usage
+### Usage
 Add mfu-form-status-indicator to your form:
 
 component.ts
@@ -333,3 +332,83 @@ You can change these colors by modifying the corresponding validColor and invali
 
 Animations
 The mfu-form-status-indicator component includes smooth slide-in and slide-out animations for the status indicator. To disable animations, set the showAnimation input property to false.
+
+## Action Confirm Directives
+ngx-material-form-utils provides two confirm directives: `MfuSubmitConfirmDirective` and `MfuClickConfirmDirective`. These directives allow you to prompt users with a angular material confirmation dialog before performing actions like form submission or button click events.
+
+### Setup
+Both directives are part of `MfuActionConfirmModule` which you can import in your module:
+
+```typescript
+import { MfuActionConfirmModule } from 'ngx-material-form-utils';
+
+@NgModule({
+  declarations: [
+    ...
+  ],
+  imports: [
+    ...
+    MfuActionConfirmModule
+  ]
+})
+``` 
+
+## MfuSubmitConfirmDirective
+The `MfuSubmitConfirmDirective` is used to prompt users with a confirmation dialog before submitting a form. Directive should be added to the form element.
+
+### Usage
+Add `mfuSubmitConfirm` to your form:
+
+component.html
+```html
+<form 
+  [formGroup]="exampleForm"
+  (confirmedSubmit)="onSubmit()" 
+  mfuSubmitConfirm
+>
+  ...
+</form>
+```
+
+Instead od listening to `(ngSubmit)`, you should listen to `(confirmedSubmit)` event to respond to form submission only when the user confirms the action.
+
+### MfuSubmitConfirmDirective inputs
+| Name | Type | Default value | Description |
+| --- | --- | --- | --- |
+confirmMessage | string | 'Are you sure you want to submit the form?' | The message to display in the confirmation dialog. |
+
+### MfuSubmitConfirmDirective outputs
+
+| Name | Type | Description |
+| --- | --- | --- |
+confirmedSubmit | EventEmitter<Event> | Emits when the user confirms the action. |
+
+## MfuClickConfirmDirective
+The `MfuClickConfirmDirective` is used to prompt users with a confirmation dialog before performing a click event. Directive should be added to the button element.
+
+### Usage
+Add `mfuClickConfirm` to your button:
+
+component.html
+```html
+<button 
+  (confirmedClick)="onButtonClick()" 
+  mfuClickConfirm
+  type="button"
+>
+  Example button
+</button>
+```
+
+Instead od listening to `(click)`, you should listen to `(confirmedClick)` event to respond to button click only when the user confirms the action.
+
+### MfuClickConfirmDirective inputs
+| Name | Type | Default value | Description |
+| --- | --- | --- | --- |
+confirmMessage | string | 'Are you sure?' | The message to display in the confirmation dialog. |
+
+### MfuClickConfirmDirective outputs
+
+| Name | Type | Description |
+| --- | --- | --- |
+confirmedClick | EventEmitter<Event> | Emits when the user confirms the action. |
