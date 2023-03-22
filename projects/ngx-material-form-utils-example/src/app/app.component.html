@@ -1,4 +1,4 @@
-<form [formGroup]="exampleForm">
+<form [formGroup]="exampleForm" (confirmedSubmit)="onSubmit($event)" mfuSubmitConfirm >
   <mfu-form-status-indicator [showAnimation]="true" [statusHeight]="10" invalidColor="#e85b34" validColor="#11a649"/>
   <mat-form-field appearance="outline">
   <mat-label>Email</mat-label>
@@ -14,5 +14,7 @@
     <mfu-input label="Username" type="text" controlName="username" [required]="true" hint="Enter some cool username" (blur)="onBlur($event)" (focus)="onFocus($event)" (input)="onInput($event)"/>
     <mfu-textarea controlName="description" label="description" hint="Write something about you..." [rows]="13" [cols]="1"></mfu-textarea>
     <mfu-select [items]="someSelectItems" controlName="someSelect" [multiple]="true"></mfu-select>
-    <button (click)="onClick()" mat-raised-button color="primary" mfuActionConfirm>Submit</button>
+
+    <button mat-raised-button color="basic" type="button" (confirmedClick)="onClick($event)" mfuClickConfirm>Some other action</button>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
   </form>

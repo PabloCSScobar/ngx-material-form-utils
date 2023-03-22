@@ -8,17 +8,24 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-onClick() {
-  console.log('Clicked in the component');
+onClick(event: Event) {
+  console.log('Clicked!');
 }
+
+onSubmit(event: Event) {
+  console.log('Submitted!');
+}
+
 onInput($event: Event) {
-  console.log($event);
+  return;
 }
+
 onFocus($event: FocusEvent) {
-  console.log($event);
+  return;
 }
+
 onBlur($event: FocusEvent) {
-  console.log($event);
+  return;
 }
 
 someSelectItems = [

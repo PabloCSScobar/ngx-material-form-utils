@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MfuInputComponent, MfuTextareaComponent, MfuSelectComponent, MfuFormStatusIndicatorComponent, MfuActionConfirmDirective } from 'ngx-material-form-utils';
+import { MfuInputComponent, MfuTextareaComponent, MfuSelectComponent, MfuFormStatusIndicatorComponent, MfuActionConfirmModule } from 'ngx-material-form-utils';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
@@ -25,7 +25,7 @@ const validationErrorMessages: ValidationErrorMessages = {
     MfuTextareaComponent,
     MfuFormStatusIndicatorComponent,
     MfuSelectComponent,
-    MfuActionConfirmDirective,
+    MfuActionConfirmModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
