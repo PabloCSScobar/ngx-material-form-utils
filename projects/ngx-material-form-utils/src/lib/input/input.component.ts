@@ -1,9 +1,10 @@
 import { NgIf } from "@angular/common";
-import { Component, EventEmitter, Input, Output, SkipSelf, ViewChild } from "@angular/core";
+import { Component, Input, SkipSelf, ViewChild } from "@angular/core";
 import { ControlContainer, ReactiveFormsModule } from "@angular/forms";
-import { MatFormFieldAppearance, MatFormFieldModule } from "@angular/material/form-field";
+import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInput, MatInputModule } from "@angular/material/input";
 import { MfuErrorMessage } from "../validation/error-message.component";
+import { MfuBaseInput } from "./base-input";
 
 @Component({
   selector: 'mfu-input',
@@ -37,22 +38,8 @@ import { MfuErrorMessage } from "../validation/error-message.component";
     </mat-form-field>
   `
 })
-export class MfuInputComponent {
-  @Input() id!: string;
-  @Input() name!: string;
-  @Input() required = false;
+export class MfuInputComponent extends MfuBaseInput {
   @Input() type: string = 'text';
-  @Input() readonly = false;
-  @Input() value: any;
-  @Input() controlName!: string;
-  @Input() appearance: MatFormFieldAppearance = 'outline';
-  @Input() showErrors = true;
-  @Input() label?: string | null = null;
-  @Input() placeholder: string = '';
-  @Input() hint?: string | null = null;
-
-  @Output() blur = new EventEmitter<FocusEvent>();
-  @Output() focus = new EventEmitter<FocusEvent>();
 
   @ViewChild(MatInput) matInput!: MatInput;
 }
