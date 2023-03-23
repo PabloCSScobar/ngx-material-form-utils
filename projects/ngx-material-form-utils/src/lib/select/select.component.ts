@@ -1,9 +1,9 @@
 import { NgFor, NgIf } from "@angular/common";
 import { Component, EventEmitter, Input, Output, SkipSelf, ViewChild } from "@angular/core";
 import { ControlContainer, ReactiveFormsModule } from "@angular/forms";
-import { MatFormFieldAppearance, MatFormFieldModule } from "@angular/material/form-field";
-import { MatInput } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelect, MatSelectChange, MatSelectModule } from "@angular/material/select";
+import { MfuBaseInput } from "../input/base-input";
 import { MfuErrorMessage } from "../validation/error-message.component";
 
 @Component({
@@ -42,27 +42,16 @@ import { MfuErrorMessage } from "../validation/error-message.component";
     </mat-form-field>
   `
 })
-export class MfuSelectComponent {
-  @Input() id!: string;
-  @Input() name!: string;
+export class MfuSelectComponent extends MfuBaseInput {
   @Input() items!: { value: any; display: string }[];
   @Input() multiple = false;
-  @Input() required = false;
   @Input() disabled = false;
-  @Input() readonly = false;
   @Input() selected: any = null;
-  @Input() controlName!: string;
-  @Input() appearance: MatFormFieldAppearance = "outline";
-  @Input() showErrors = true;
-  @Input() label?: string | null = null;
-  @Input() hint?: string | null = null;
 
   @Output() selectionChange = new EventEmitter<MatSelectChange>();
   @Output() valueChange = new EventEmitter<any>();
   @Output() closed = new EventEmitter<void>();
   @Output() opened = new EventEmitter<void>();
-  @Output() focus = new EventEmitter<FocusEvent>();
-  @Output() blur = new EventEmitter<FocusEvent>();
 
   @ViewChild(MatSelect) matSelect!: MatSelect;
 }
