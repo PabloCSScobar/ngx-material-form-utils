@@ -14,3 +14,4 @@ export * from './lib/form-status-indicator/form-status-indicator.component';
 export * from './lib/action-confirm/action-confirm.module';
 export * from './lib/action-confirm/click-confirm.directive';
 export * from './lib/action-confirm/submit-confirm.directive';
+export * from './lib/password/password-input.component';

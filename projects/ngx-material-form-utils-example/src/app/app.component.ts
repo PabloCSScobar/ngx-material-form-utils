@@ -38,6 +38,7 @@ someSelectItems = [
   exampleForm = this.fb.group({
     email: [''],
     username: ['', Validators.required],
+    password: ['', Validators.required],
     description: ['', Validators.required],
     someSelect: [null, Validators.required],
   });
