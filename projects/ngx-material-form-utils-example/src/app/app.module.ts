@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MfuErrorMessage, ValidationErrorMessages, VALIDATION_ERROR_MESSAGES_TOKEN } from 'ngx-material-form-utils';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 const validationErrorMessages: ValidationErrorMessages = {
   required: () => 'This field is very required.',
@@ -19,6 +20,7 @@ const validationErrorMessages: ValidationErrorMessages = {
     AppComponent,
   ],
   imports: [
+    MatIconModule,
     MatButtonModule,
     MtuPasswordInputComponent,
     MfuErrorMessage,

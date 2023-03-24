@@ -12,7 +12,7 @@
     <mat-error mfuErrorMessage></mat-error>
     </mat-form-field>
     <mfu-input label="Username" type="text" controlName="username" [required]="true" hint="Enter some cool username" (blur)="onBlur($event)" (focus)="onFocus($event)" (input)="onInput($event)"/>
-    <mfu-password-input controlName="password" type="text"></mfu-password-input>
+    <mfu-password controlName="password" [passwordVisibilityToggle]="true"/>
     <mfu-textarea controlName="description" label="description" hint="Write something about you..." [rows]="13" [cols]="1"></mfu-textarea>
     <mfu-select [items]="someSelectItems" controlName="someSelect" [multiple]="true"></mfu-select>
 
